@@ -1,6 +1,8 @@
 // const express = require('express');
 import axios from "axios";
+
 import { Router, Request, Response } from "express";
+import { homeFavorite } from "../Interfaces/interfaces";
 
 const route: Router = Router();
 const { loadDB } = require("../utils/utils");
@@ -29,15 +31,17 @@ route.get("/favorite", async (req: Request, res: Response) => {
   try {
     const query = db.collection("favorite");
     const querySnapshot = await query.get();
-    const docs: Array<object> = querySnapshot.docs;
-    const response: object = docs.map((e: any) => ({
-      id: e.id,
-      name: e.data().name,
-      image: e.data().image,
-      description: e.data().description,
-      favorite: e.data().favorite,
-    }));
-
+    const docs: Array<homeFavorite> = querySnapshot.docs;
+    var response = docs.map(
+      (e: homeFavorite) =>
+        ({
+         idSport: e.id,
+         strSportThumb:e.data().strSportThumb,
+         strSport: e.data().strSport,
+         strSportDescription:e.data().strSportDescription,
+         favorite: e.data().favorite,
+        })
+    );
     res.status(200).send(response);
   } catch (e) {
     console.log("Error on get all", e);
@@ -82,20 +86,21 @@ route.get("/all", async (req: Request, res: Response) => {
 });
 
 route.post("/favorite", async (req: Request, res: Response) => {
+  console.log(req.body);
   try {
     await db
       .collection("favorite")
-      .doc("/" + req.body.id + "/")
+      .doc("/" + req.body.idSport + "/")
       .create({
-        strSport: req.body.name,
-        strSportThumb: req.body.image,
-        strSportDescription: req.body.description,
+        strSport: req.body.strSport,
+        strSportThumb: req.body.strSportThumb,
+        strSportDescription: req.body.strSportDescription,
         favorite: req.body.favorite ? true : false,
       });
     res.status(204).send("Created successfully");
   } catch (e) {
     console.log("Error on post history", e);
-    res.status(500).send({ msg: "Error on post history" });
+    res.status(500).send({ msg: "Error on post history" + " Code: " + e });
   }
 });
 

@@ -4,11 +4,12 @@ import { Dispatch } from "redux";
 import ActionTypes from "./ActionTypes";
 
 let LOCALHOST: string =
-  "http://localhost:5000/fir-2b0d9/us-central1/serve/auth";
+  "http://localhost:5000/fir-2b0d9/us-central1/serve";
 
-export default function favAdd(fav: CardComponent) {
+export function favAdd(fav: CardComponent) {
   return async (dispatch: Dispatch) => {
-    const res = await axios.post(`${LOCALHOST}/favorite`, fav);
-    dispatch({type: ActionTypes.FAVORITEADD, payload: res.data})
+    console.log(fav)
+    const res = await axios.put(`${LOCALHOST}/favorite/${fav.idSport}`, fav);
+    dispatch({type: ActionTypes.FAVORITEADD, payload: {}})
 };
 }

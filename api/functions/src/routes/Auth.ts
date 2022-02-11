@@ -80,13 +80,11 @@ route.get("/facebook", async (req: Request, res: Response) => {
 });
 
 route.get("/google", async (req: Request, res: Response) => {
-  console.log('login google')
   try {
-    const provider:GoogleAuthProvider = new GoogleAuthProvider();
+    const provider: GoogleAuthProvider = new GoogleAuthProvider();
     provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
     const user = await signInWithPopup(auth, provider);
-    console.log(user)
-    res.status(200).send("Successfully Login");
+    res.status(200).send("Successfully Login "+ user);
   } catch (error) {
     console.log("Error on login with Google", error);
     res.status(501).send({ msg: "Error on login with Facebook" });

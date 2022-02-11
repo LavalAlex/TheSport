@@ -9,33 +9,26 @@ import {
   Index,
 } from "../../Interface/Interfaces";
 import { actionCreators } from "../../Redux";
-import favAdd from "../../Redux/Actions/Favorite";
+// import favAdd from "../../Redux/Actions/Favorite";
 import { State } from "../../Redux/Reducer/Index";
 
 function Home() {
   const dispatch = useDispatch();
   const { all } = bindActionCreators(actionCreators, dispatch);
-  const state: Array<CardComponent> = useSelector((state: State) => state.card);
-  const [index, setIndex] = useState(0);
+  const state: Array<Object> = useSelector((state: State) => state.card);
 
   useEffect(() => {
     all();
   }, []);
 
-  const handleSubmit = () => {
-    all();
-  };
+
   
-  console.log(state);
-  console.log(index);
+  
   return (
     <div>
-      <button onClick={handleSubmit}>all</button>
-      {state[index] ? (
-        <CardHome
-          state={state}
-          
-        />
+      
+      {state[0] ? (
+        <CardHome/>
       ) : (
         <div>Cargando...</div>
       )}

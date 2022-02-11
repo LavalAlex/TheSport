@@ -8,9 +8,18 @@ export interface fireConfig {
   measurementId: String;
 }
 
-export interface userFavorite {
-  id: string,
-  name: string,
-  image: string,
-  favorite: boolean
+export interface homeFavorite {
+  strSportThumb?: string;
+  strSport?: string;
+  strSportDescription?: string;
+  id?: string;
+  idSport:string;
+  favorite?: boolean;
+  data(): {
+    strSportThumb?: string;
+    strSport?: string;
+    strSportDescription?: string;
+    idSport?: string;
+    favorite?: boolean;
+  };
 }

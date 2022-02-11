@@ -40,9 +40,9 @@ export interface ICardHome{
 };
 
 export interface CardComponent{
-  strSportThumb:string;
-  strSport:string;
-  strSportDescription:string;
+  strSportThumb?:string;
+  strSport?:string;
+  strSportDescription?:string;
   idSport?:string;
   favorite? : boolean
 }

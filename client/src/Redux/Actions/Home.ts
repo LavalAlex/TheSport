@@ -7,7 +7,7 @@ let LOCALHOST: string = "http://localhost:5000/fir-2b0d9/us-central1/serve";
 
 export function all(){
     return async (dispatch: Dispatch) => {
-        const res = await axios.get(`${LOCALHOST}/all`);
+        const res = await axios.get(`${LOCALHOST}/favorite`);
         dispatch({type: ActionTypes.ALL, payload: res.data || {} });
     }
 }
