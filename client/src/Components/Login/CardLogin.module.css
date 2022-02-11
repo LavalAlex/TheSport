@@ -1,0 +1,82 @@
+label {
+    font-family: "Raleway", sans-serif;
+    font-size: 11pt;
+  }
+  .forgotPass {
+    color: #2dbd6e;
+    font-family: "Raleway", sans-serif;
+    font-size: 10pt;
+    margin-top: 3px;
+    text-align: right;
+  }
+  .card {
+    background: #f1f0f0;
+    border-radius: 8px;
+    box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
+    height: auto;
+    margin: 6rem auto 8.1rem auto;
+    width: 329px;
+  }
+  #cardContent {
+    padding: 12px 44px;
+  }
+  #cardTitle {
+    font-family: "Raleway Thin", sans-serif;
+    letter-spacing: 4px;
+    padding-bottom: 23px;
+    padding-top: 13px;
+    text-align: center;
+  }
+  #signup {
+    color: #2dbd6e;
+    font-family: "Raleway", sans-serif;
+    font-size: 10pt;
+    margin-top: 16px;
+    text-align: center;
+  }
+  #submitBtn {
+    background: -webkit-linear-gradient(right, #a6f77b, #2dbd6e);
+    border: none;
+    border-radius: 21px;
+    box-shadow: 0px 1px 8px #24c64f;
+    cursor: pointer;
+    color: black;
+    font-family: "Raleway SemiBold", sans-serif;
+    height: 42.3px;
+    margin: 0 auto;
+    margin-top: 10px;
+    transition: 0.25s;
+    width: 100%;
+  }
+  #submitBtn:hover {
+    box-shadow: 0px 1px 18px #24c64f;
+  }
+  .form {
+    align-items: left;
+    display: flex;
+    flex-direction: column;
+  }
+  .formBorder {
+    background: -webkit-linear-gradient(right, #a6f77b, #2ec06f);
+    height: 1px;
+    width: 100%;
+  }
+  .formContent {
+    background: #f1f0f0;
+    border: none;
+    outline: none;
+    padding-top: 14px;
+  }
+  .underlineTitle {
+    background: -webkit-linear-gradient(right, #a6f77b, #2ec06f);
+    height: 2px;
+    margin: -1.1rem auto 0 auto;
+    width: 89px;
+  }
+  
+  .labelEmail{
+      padding-top:13px
+  }
+  .labelPassword{
+      padding-top:22px
+  }

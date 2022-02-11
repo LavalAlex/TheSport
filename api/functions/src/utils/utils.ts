@@ -10,7 +10,7 @@ const loadDB = async (db:any) => {
     await db
     .collection("favorite")
     .doc("/" + e.idSport + "/")
-    .create({ name: e.strSport, image: e.strSportThumb});
+    .create({ name: e.strSport, image: e.strSportThumb, description:e.strSportDescription});
   })
   return 'Load successfully'
   
