@@ -56,14 +56,14 @@ function CardFavorite() {
             <p className={styles.cardText + `${seeMore ? styles.expand : ""}`}>{stateHome[index].strSportDescription}</p>
             <button
             onClick={handleMore}
-            className="btn btn-outline-secondary border-0"
+            className={styles.btnMore}
           >
-            {" "}
-            See More...
+            {!seeMore?"See More..." : "See Less..."}
           </button>
           </div>
           <div className={styles.containerBtns}>
           <button onClick={handleDelte} className={styles.btnDelete}></button>
+          <div className={styles.heartMan}></div>
           <button onClick={handleNext} className={styles.btnNext}></button>
 
           </div>

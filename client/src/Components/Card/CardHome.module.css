@@ -71,22 +71,23 @@
   width: 5rem;
   height: 5rem;
   justify-content: center;
-  background-image: url("./Image/heart.png");
+  background-image: url("./Image/heartBlack2.png");
   border-radius: 50%;
   background-position:center;
-  background-position-y: -2.2rem;
-  background-position-x: -1.7rem;
-  background-size: 170%;
+  background-position-y: 0.6rem ;
+  background-position-x: 0.55rem ;
+  background-size: 80%;
   background-repeat: no-repeat;
   background-color: whitesmoke;
-
-  border: 0.1rem solid black;
+  border: 0.2rem solid black;
 }
 .btnLike:hover{
-  background-color: white;
+  background-color: #3cb95c;
   color: #45CD8F;
   border-radius: 50% ;
-  border: 0.2rem solid black;
+  
+  background-image: url("./Image/heartBlack4.png");
+
 
 }
 
@@ -94,38 +95,41 @@
   width: 5rem;
   height: 5rem;
   justify-content: center;
-  background-image: url("./Image/nope.png");
   border-radius: 50%;
   background-position:center;
   background-size: 100%;
   background-repeat: no-repeat;
-  border: 0.1rem solid black;
-  background-position-x: -0.15rem ;
-
-
+  /* background-position-y: 0.15rem; */
+  /* background-position-x: -0.02rem; */
+  background-image: url("./Image/cancelBlack.png");
+  
+  border: 0.2rem solid black;
+  
 }
 .btnNope:hover{
-  background-color: white;
-  color: #EC5A69;
-  border: 0.2rem solid black;
-
+  background-color: black;
+  background-image: url("./Image/cancelRed.png");
+  background-position:center;
+  background-size: 80%;
+  border: 0.1rem solid black;
 }
 
 .btnDelete{
   width: 5rem;
   height: 5rem;
   justify-content: center;
-  background-image: url("./Image/delete.png");
+  background-image: url("./Image/deleteBlack7.png");
   border-radius: 50%;
   background-position:center;
-  background-size: 100%;
+  background-size: 60%;
   background-repeat: no-repeat;
   background-color: whitesmoke;
 
-  border: 0.1rem solid black;
+  border: 0.2rem solid black;
 }
 .btnDelete:hover{
-  background-color: white;
+  background-color: #ee2222;
+  background-image: url("./Image/deleteBlack6.png");
   color: #45CD8F;
   border-radius: 50% ;
   border: 0.2rem solid black;
@@ -136,19 +140,55 @@
   width: 5rem;
   height: 5rem;
   justify-content: center;
-  background-image: url("./Image/delete1.png");
+  background-image: url("./Image/nextBack3.png");
   border-radius: 50%;
   background-position:center;
   background-size: 100%;
   background-repeat: no-repeat;
   background-color: whitesmoke;
-
-  border: 0.1rem solid black;
-}
-.btnNext:hover{
-  background-color: white;
-  color: #45CD8F;
-  border-radius: 50% ;
   border: 0.2rem solid black;
 
+}
+.btnNext:hover{
+  background-color: #19d2ff;
+  background-image: url("./Image/nextBlack.png");
+  border-radius: 50% ;
+  background-size: 110%;
+
+  border: 0.2rem solid black;
+
+}
+
+.heartMan{
+  width: 6rem;
+  height: 5rem;
+  justify-content: center;
+  background-image: url("./Image/man.jpg");
+  background-position:center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position-x: -0.15rem ;
+}
+
+.heartWoman{
+  width: 6rem;
+  height: 5rem;
+  justify-content: center;
+  background-image: url("./Image/man.jpg");
+  background-position:center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position-x: -0.15rem ;
+}
+
+.btnMore{
+  border: none;
+  color: rgb(74, 74, 189);
+  margin-top: 1rem;
+  background-color: whitesmoke;
+
+}
+
+.btnMore:hover{
+  color: black;
 }

@@ -44,39 +44,33 @@ function CardHome() {
   return (
     <div className={styles.container} key={stateHome[index].idSport}>
       <div className={styles.card}>
-        <div >
-        
-        <div className={styles.overflow}>
-          <img
-            src={stateHome[index].strSportThumb}
-            alt="a wallpaper"
-            className={styles.cardImgTop}
+        <div>
+          <div className={styles.overflow}>
+            <img
+              src={stateHome[index].strSportThumb}
+              alt="a wallpaper"
+              className={styles.cardImgTop}
             />
-        </div>
-        <div className={styles.cardBody}>
-          <h4 className="card-title">{stateHome[index].strSport}</h4>
-          <p className={styles.cardText + `${seeMore ? styles.expand : ""}`}>
-            {stateHome[index].strSportDescription}
-          </p>
+          </div>
+          <div className={styles.cardBody}>
+            <h4 className="card-title">{stateHome[index].strSport}</h4>
+            <p className={styles.cardText + `${seeMore ? styles.expand : ""}`}>
+              {stateHome[index].strSportDescription}
+            </p>
 
-          <button
-            onClick={handleMore}
-            className="btn btn-outline-secondary border-0"
+            <button
+              onClick={handleMore}
+              className={styles.btnMore}
             >
-            {" "}
-            See More...
-          </button>
+              {!seeMore ? "See More..." : "See Less..."}
+            </button>
+          </div>
+          <div className={styles.containerBtns}>
+            <button onClick={handleNope} className={styles.btnNope}></button>
+            <div className={styles.heartMan}></div>
+            <button onClick={handleFav} className={styles.btnLike}></button>
+          </div>
         </div>
-        <div className={styles.containerBtns}>
-          <button onClick={handleNope} className={styles.btnNope}>
-
-          </button>
-          <button onClick={handleFav} className={styles.btnLike}>
-            
-          </button>
-
-        </div>
-            </div>
       </div>
     </div>
   );
