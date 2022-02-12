@@ -1,14 +1,30 @@
 .container{
   display: flex;
   justify-content: center;
+  padding: 1rem;
+
+}
+.containerImg{
+  background-image: url("./Image/woman.png");
+  background-position:center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  opacity: 0.4;
+  filter:alpha(opacity=40)
 }
 .card{
+ 
+  
   justify-content: center;
-  width: 500px;
+  width: 400px;
   height: auto;
   border: solid black;
+  padding: 1rem;
+  border-radius: 2rem;
   margin-top: 10px;
-  box-shadow: 5px 10px 20px 1px rgba(255, 255, 255, 0.273) ;
+  background-color: whitesmoke;
+
+  /* box-shadow: 5px 10px 20px 1px rgba(255, 255, 255, 0.273) ; */
 }
 .card:hover {
   transition: all 0.7s linear;
@@ -20,10 +36,15 @@
 }
 
 .cardText {
-  padding: 0.3rem 1rem;
-  font-size: 1rem;
+  position: relative;
+  max-height: 10.5rem;
+  overflow-y: hidden;
+  transition: all 0.25s;
+  margin: 0 auto;
 }
-
+.expand {
+  max-height: max-content;
+}
 .overflow {
   overflow: hidden;
 }
@@ -31,9 +52,103 @@
 .cardImgTop {
   margin-top: 5px;
   transform: scale(1);
+  border-radius: 2rem;
   transition: all 0.2s ease-in-out;
 }
 
 .cardImgTop:hover {
-  transform: scale(1.8);
+  transform: scale(1.1);
+  border-radius: 2rem;
+  
+}
+
+.containerBtns{
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnLike{
+  width: 5rem;
+  height: 5rem;
+  justify-content: center;
+  background-image: url("./Image/heart.png");
+  border-radius: 50%;
+  background-position:center;
+  background-position-y: -2.2rem;
+  background-position-x: -1.7rem;
+  background-size: 170%;
+  background-repeat: no-repeat;
+  background-color: whitesmoke;
+
+  border: 0.1rem solid black;
+}
+.btnLike:hover{
+  background-color: white;
+  color: #45CD8F;
+  border-radius: 50% ;
+  border: 0.2rem solid black;
+
+}
+
+.btnNope{
+  width: 5rem;
+  height: 5rem;
+  justify-content: center;
+  background-image: url("./Image/nope.png");
+  border-radius: 50%;
+  background-position:center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  border: 0.1rem solid black;
+  background-position-x: -0.15rem ;
+
+
+}
+.btnNope:hover{
+  background-color: white;
+  color: #EC5A69;
+  border: 0.2rem solid black;
+
+}
+
+.btnDelete{
+  width: 5rem;
+  height: 5rem;
+  justify-content: center;
+  background-image: url("./Image/delete.png");
+  border-radius: 50%;
+  background-position:center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: whitesmoke;
+
+  border: 0.1rem solid black;
+}
+.btnDelete:hover{
+  background-color: white;
+  color: #45CD8F;
+  border-radius: 50% ;
+  border: 0.2rem solid black;
+
+}
+
+.btnNext{
+  width: 5rem;
+  height: 5rem;
+  justify-content: center;
+  background-image: url("./Image/delete1.png");
+  border-radius: 50%;
+  background-position:center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: whitesmoke;
+
+  border: 0.1rem solid black;
+}
+.btnNext:hover{
+  background-color: white;
+  color: #45CD8F;
+  border-radius: 50% ;
+  border: 0.2rem solid black;
+
 }

@@ -14,6 +14,7 @@ function CardFavorite() {
     const { favAdd } = bindActionCreators(actionCreators, dispatch);
     const state: Array<CardComponent> = useSelector((state: State) => state.card);
     const [index, setIndex] = useState(0);
+  const [seeMore, setSeemore] = useState(false);
     
   
     const handleDelte = () => {
@@ -30,6 +31,13 @@ function CardFavorite() {
     const handleNext = () =>{
       setIndex(index +1)
     }
+    const handleMore = () => {
+      if (seeMore) {
+        setSeemore(false);
+      } else {
+        setSeemore(true);
+      }
+    };
 
     const stateHome = state.filter(e => e.favorite == true)
 
@@ -45,18 +53,20 @@ function CardFavorite() {
           </div>
           <div className={styles.cardBody}>
             <h4 className="card-title">{stateHome[index].strSport}</h4>
-            <p className={styles.cardText}>{stateHome[index].strSportDescription}</p>
-            <a
-             
-              target="_blank"
-              className="btn btn-outline-secondary border-0"
-              
-            >
-              More...
-            </a>
+            <p className={styles.cardText + `${seeMore ? styles.expand : ""}`}>{stateHome[index].strSportDescription}</p>
+            <button
+            onClick={handleMore}
+            className="btn btn-outline-secondary border-0"
+          >
+            {" "}
+            See More...
+          </button>
           </div>
-          <button onClick={handleDelte}>Delete</button>
-          <button onClick={handleNext}>Next</button>
+          <div className={styles.containerBtns}>
+          <button onClick={handleDelte} className={styles.btnDelete}></button>
+          <button onClick={handleNext} className={styles.btnNext}></button>
+
+          </div>
         </div>       
       </div>
     );
