@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../Redux/Reducer/Index";
 import style from "./CardHome.module.css";
-import { useSpring, animated, useTransition, config } from "react-spring";
+import { useSpring, a, useTransition, config } from "react-spring";
 import { CardComponent, ICardHome } from "../../Interface/Interfaces";
 import styles from "./CardHome.module.css";
 // import favAdd from "../../Redux/Actions/Favorite";
@@ -16,35 +16,14 @@ function CardHome() {
   const [index, setIndex] = useState(0);
   const [seeMore, setSeemore] = useState(false);
   const [move, setMove] = useState(true);
+  const [flipped, setFlipped] = useState(false);
 
-  const [toggle, set] = useState(false);
 
-  const transitions = useTransition(toggle, {
-    from: { position: "absolute", opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
-    reverse: toggle,
-    delay: 2000,
-    config: config.molasses,
-    onRest: () => setMove(false),
-  });
-
-  const handleFav = () => {
-    var fav = {
-      idSport: stateHome[index].idSport,
-      favorite: true,
-    };
-    favAdd(fav);
-
-    setIndex(index + 1);
-  };
   const handleNope = () => {
+    setFlipped((lastState) => !lastState);
     setIndex(index + 1);
   };
-  const handleNext = () => {
-    setIndex(index + 1);
-    setMove(true);
-  };
+
   const handleMore = () => {
     if (seeMore) {
       setSeemore(false);
@@ -55,63 +34,25 @@ function CardHome() {
 
   const stateHome = state.filter((e) => e.favorite != true);
 
-  const animation = useSpring({
-    backgroundColor: `#${move ? "000" : "FA0"}`,
-    color: `#${move ? "FFF" : "000"}`,
+  const { transform, opacity } = useSpring({
+    opacity: flipped ? 1 : 0,
+    transform: `perspective(600px) rotateX(${flipped ? 180 : 0}deg)`,
+    config: { mass: 5, tension: 500, friction: 80 },
   });
 
-  // const animationB = useSpring({
-  //   transform:`translatex(${move?-250:0}px)`,
-  //   "backgroundColor":"000",
-  // })
-
-  const clickHandle = () => {
-    setMove((lastState) => !lastState);
+  const handleNext = () => {
+    setIndex(index + 1);
+    setFlipped((state) => !state);
   };
 
-  console.log(move);
-  return move ? (console.log('hgasf'),
-    transitions(({ opacity }, item) => (
-      <div className={styles.container} key={stateHome[index].idSport}>
-        <animated.div
-          className={styles.card}
-          style={{
-            position: "absolute",
-            opacity: opacity.to({ range: [0.0, 1.0], output: [0, 1] }),
-          }}
-        >
-          <div>
-            <div className={styles.overflow}>
-              <img
-                src={stateHome[index].strSportThumb}
-                alt="a wallpaper"
-                className={styles.cardImgTop}
-              />
-            </div>
-            <div className={styles.cardBody}>
-              <h4 className="card-title">{stateHome[index].strSport}</h4>
-              <p
-                className={styles.cardText + `${seeMore ? styles.expand : ""}`}
-              >
-                {stateHome[index].strSportDescription}
-              </p>
-
-              <button onClick={handleMore} className={styles.btnMore}>
-                {!seeMore ? "See More..." : "See Less..."}
-              </button>
-            </div>
-            <div className={styles.containerBtns}>
-              <button onClick={handleNope} className={styles.btnNope}></button>
-              <div className={styles.heartMan}></div>
-              <button onClick={handleNext} className={styles.btnLike}></button>
-            </div>
-          </div>
-        </animated.div>
-      </div>
-    ))
-  ) : (
+  return (
+    <div>
+    {!flipped? 
     <div className={styles.container} key={stateHome[index].idSport}>
-      <animated.div className={styles.card}>
+      <a.div
+        className={styles.card}
+        style={{ opacity: opacity.to((o) => 1 - o), transform }}
+      >
         <div>
           <div className={styles.overflow}>
             <img
@@ -136,8 +77,46 @@ function CardHome() {
             <button onClick={handleNext} className={styles.btnLike}></button>
           </div>
         </div>
-      </animated.div>
-    </div>
+      </a.div>
+    </div>:
+
+    <div className={styles.container} key={stateHome[index].idSport}>
+    <a.div
+      className={styles.card}
+      style={{
+          opacity,
+          transform,
+          rotateX: '180deg',
+        }}
+    >
+      <div>
+        <div className={styles.overflow}>
+          <img
+            src={stateHome[index].strSportThumb}
+            alt="a wallpaper"
+            className={styles.cardImgTop}
+          />
+        </div>
+        <div className={styles.cardBody}>
+          <h4 className="card-title">{stateHome[index].strSport}</h4>
+          <p className={styles.cardText + `${seeMore ? styles.expand : ""}`}>
+            {stateHome[index].strSportDescription}
+          </p>
+
+          <button onClick={handleMore} className={styles.btnMore}>
+            {!seeMore ? "See More..." : "See Less..."}
+          </button>
+        </div>
+        <div className={styles.containerBtns}>
+          <button onClick={handleNope} className={styles.btnNope}></button>
+          <div className={styles.heartMan}></div>
+          <button onClick={handleNext} className={styles.btnLike}></button>
+        </div>
+      </div>
+    </a.div>
+  </div>
+  }
+  </div>
   );
 }
 
