@@ -1,20 +1,18 @@
-.container{
+.container {
   display: flex;
   justify-content: center;
   padding: 1rem;
-
+  margin-top: 15rem;
 }
-.containerImg{
+.containerImg {
   background-image: url("./Image/woman.png");
-  background-position:center;
+  background-position: center;
   background-size: 100%;
   background-repeat: no-repeat;
   opacity: 0.4;
-  filter:alpha(opacity=40)
+  filter: alpha(opacity=40);
 }
-.card{
- 
-  
+.card {
   justify-content: center;
   width: 400px;
   height: auto;
@@ -23,13 +21,11 @@
   border-radius: 2rem;
   margin-top: 10px;
   background-color: #ffaa00;
-  
 
   /* box-shadow: 5px 10px 20px 1px rgba(255, 255, 255, 0.273) ; */
 }
 .card:hover {
   transition: all 0.7s linear;
-  
 }
 
 .cardBody {
@@ -60,137 +56,152 @@
 .cardImgTop:hover {
   transform: scale(1.1);
   border-radius: 2rem;
-  
 }
 
-.containerBtns{
+.containerBtns {
   display: flex;
   justify-content: space-between;
 }
 
-.btnLike{
+.btnLike {
   width: 5rem;
   height: 5rem;
   justify-content: center;
   background-image: url("./Image/heartBlack2.png");
   border-radius: 50%;
-  background-position:center;
-  background-position-y: 0.6rem ;
-  background-position-x: 0.55rem ;
+  background-position: center;
+  background-position-y: 0.6rem;
+  background-position-x: 0.55rem;
   background-size: 80%;
   background-repeat: no-repeat;
   background-color: whitesmoke;
   border: 0.2rem solid black;
 }
-.btnLike:hover{
+.btnLike:hover {
   background-color: #3cb95c;
-  color: #45CD8F;
-  border-radius: 50% ;
-  
+  color: #45cd8f;
+  border-radius: 50%;
+
   background-image: url("./Image/heartBlack4.png");
-
-
 }
 
-.btnNope{
+.btnNope {
   width: 5rem;
   height: 5rem;
   justify-content: center;
   border-radius: 50%;
-  background-position:center;
+  background-position: center;
   background-size: 100%;
   background-repeat: no-repeat;
   /* background-position-y: 0.15rem; */
   /* background-position-x: -0.02rem; */
   background-image: url("./Image/cancelBlack.png");
-  
+
   border: 0.2rem solid black;
-  
 }
-.btnNope:hover{
+.btnNope:hover {
   background-color: black;
   background-image: url("./Image/cancelRed.png");
-  background-position:center;
+  background-position: center;
   background-size: 80%;
   border: 0.1rem solid black;
 }
 
-.btnDelete{
+.btnDelete {
   width: 5rem;
   height: 5rem;
   justify-content: center;
   background-image: url("./Image/deleteBlack7.png");
   border-radius: 50%;
-  background-position:center;
+  background-position: center;
   background-size: 60%;
   background-repeat: no-repeat;
   background-color: whitesmoke;
 
   border: 0.2rem solid black;
 }
-.btnDelete:hover{
+.btnDelete:hover {
   background-color: #ee2222;
   background-image: url("./Image/deleteBlack6.png");
-  color: #45CD8F;
-  border-radius: 50% ;
+  color: #45cd8f;
+  border-radius: 50%;
   border: 0.2rem solid black;
-
 }
 
-.btnNext{
+.btnNext {
   width: 5rem;
   height: 5rem;
   justify-content: center;
   background-image: url("./Image/nextBack3.png");
   border-radius: 50%;
-  background-position:center;
+  background-position: center;
   background-size: 100%;
   background-repeat: no-repeat;
   background-color: whitesmoke;
   border: 0.2rem solid black;
-
 }
-.btnNext:hover{
+.btnNext:hover {
   background-color: #19d2ff;
   background-image: url("./Image/nextBlack.png");
-  border-radius: 50% ;
+  border-radius: 50%;
   background-size: 110%;
 
   border: 0.2rem solid black;
-
 }
 
-.heartMan{
+.heartMan {
   width: 6rem;
   height: 5rem;
   justify-content: center;
   background-image: url("./Image/man.jpg");
-  background-position:center;
+  background-position: center;
   background-size: 100%;
   background-repeat: no-repeat;
-  background-position-x: -0.15rem ;
+  background-position-x: -0.15rem;
 }
 
-.heartWoman{
+.heartWoman {
   width: 6rem;
   height: 5rem;
   justify-content: center;
   background-image: url("./Image/man.jpg");
-  background-position:center;
+  background-position: center;
   background-size: 100%;
   background-repeat: no-repeat;
-  background-position-x: -0.15rem ;
+  background-position-x: -0.15rem;
 }
 
-.btnMore{
+.btnMore {
   border: none;
   color: rgb(21, 19, 155);
   margin-top: 1rem;
   background-color: #ffaa00;
-
 }
 
-.btnMore:hover{
+.btnMore:hover {
   color: black;
+}
+
+.deck {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deck > div {
+  touch-action: none;
+  background-size: auto 85%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 45vh;
+  max-width: 300px;
+  height: 85vh;
+  max-height: 570px;
+  will-change: transform;
+  border-radius: 10px;
   
 }

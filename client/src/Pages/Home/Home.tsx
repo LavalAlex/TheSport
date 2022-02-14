@@ -11,6 +11,7 @@ import {
 import { actionCreators } from "../../Redux";
 // import favAdd from "../../Redux/Actions/Favorite";
 import { State } from "../../Redux/Reducer/Index";
+import styles from "./home.module.css";
 
 function Home() {
   const dispatch = useDispatch();
@@ -21,14 +22,13 @@ function Home() {
     all();
   }, []);
 
-
-  
   
   return (
-    <div>
-      
+    <div>  
       {state[0] ? (
+        <div >
         <CardHome/>
+        </div>
       ) : (
         <div>Cargando...</div>
       )}
