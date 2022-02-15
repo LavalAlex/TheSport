@@ -42,6 +42,7 @@ function CardFavorite() {
     const stateHome = state.filter(e => e.favorite == true)
 
     return (
+      <div className={styles.containerFav}>
       <div className={styles.container} key={stateHome[index].idSport}>
         <div className={styles.card}>
           <div className={styles.overflow}>
@@ -69,6 +70,34 @@ function CardFavorite() {
           </div>
         </div>       
       </div>
+       <div className={styles.container} key={stateHome[index].idSport}>
+       <div className={styles.cardFav}>
+         <div className={styles.overflow}>
+           <img
+             src={stateHome[index].strSportThumb}
+             alt="a wallpaper"
+             className={styles.cardImgTop}
+           />
+         </div>
+         <div className={styles.cardBody}>
+           <h4 className="card-title">{stateHome[index].strSport}</h4>
+           <p className={styles.cardText + `${seeMore ? styles.expand : ""}`}>{stateHome[index].strSportDescription}</p>
+           <button
+           onClick={handleMore}
+           className={styles.btnMoreFav}
+         >
+           {!seeMore?"See More..." : "See Less..."}
+         </button>
+         </div>
+         <div className={styles.containerBtns}>
+         <button onClick={handleDelte} className={styles.btnDelete}></button>
+         <div className={styles.heartMan}></div>
+         <button onClick={handleNext} className={styles.btnNext}></button>
+
+         </div>
+       </div>       
+     </div>
+     </div>
     );
   }
   

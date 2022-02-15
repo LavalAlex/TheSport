@@ -38,8 +38,9 @@ function CardHome() {
   const state: Array<CardComponent> = useSelector((state: State) => state.card);
   const [index, setIndex] = useState(0);
   const [seeMore, setSeemore] = useState(false);
-  const [move, setMove] = useState(true);
+  const [move, setMove] = useState(0);
   const [flipped, setFlipped] = useState(false);
+
   const stateHome = state?.filter((e) => e.favorite != true);
 
   const [gone] = useState(() => new Set()); // The set flags all the cards that are flicked out
@@ -56,6 +57,7 @@ function CardHome() {
       direction: [xDir],
       velocity: [vx],
     }) => {
+      let xCard = 0;
       const trigger = vx > 0.2; // If you flick hard enough it should trigger the card to fly out
       if (!active && trigger) gone.add(index); // If button/finger's up and trigger velocity is reached, we flag the card ready to fly out
       api.start((i) => {
@@ -64,25 +66,41 @@ function CardHome() {
         const x = isGone ? (200 + window.innerWidth) * xDir : active ? mx : 0; // When a card is gone it flys out left or right, otherwise goes back to zero
         const rot = mx / 100 + (isGone ? xDir * 10 * vx : 0); // How much the card tilts, flicking it harder makes it rotate faster
         const scale = active ? 1.1 : 1; // Active cards lift up a bit
+        xCard = x;
         return {
           x,
-          rot,
           scale,
           delay: undefined,
           config: { friction: 50, tension: active ? 800 : isGone ? 200 : 500 },
         };
       });
-      if (!active && gone.size === stateHome.length)
+
+      if (!active && gone.size === stateHome.length - move) {
         setTimeout(() => {
           gone.clear();
           api.start((i) => to(i));
         }, 600);
+      }
+      console.log('entraaa')
+      if (!active) {
+        if (xCard > 0) {
+          const fav = {
+            idSport: stateHome[stateHome.length - 1 - index].idSport,
+            favorite: true,
+          };
+          setMove(move + 1);
+          gone.delete(index);
+          favAdd(fav);
+        }
+      }
     }
   );
 
   const handleNope = () => {
     setFlipped((lastState) => !lastState);
     setIndex(index + 1);
+    bind(index)
+    console.log(gone)
   };
 
   const handleMore = () => {
@@ -93,42 +111,42 @@ function CardHome() {
     }
   };
 
-  const handleNext = () => {
+  const handleLike = () => {
     setIndex(index + 1);
     setFlipped((state) => !state);
+    console.log(gone)
   };
-
-  console.log(props)
-  console.log(bind)
+  console.log(stateHome)
   return (
     <div className={styles.container} key={stateHome[index].idSport}>
       <>
-        {props.map(({ x, y, rot, scale }, i) => (
+        {props.map(({ x, y, scale }, i) => (
           <animated.div className={styles.deck} key={i} style={{ x, y }}>
-            {/* This is the card itself, we're binding our gesture to it (and inject its index so we know which is which) */}
-            <animated.div {...bind(i)}
-                  style={{
-                    transform: interpolate([rot, scale], trans),
-                    
-                  }}>
-      
+            <animated.div
+              {...bind(i)}
+              style={{
+                transform: interpolate([scale], trans),
+              }}
+            >
               <div className={styles.card}>
                 <div>
                   <div className={styles.overflow}>
                     <img
-                      src={stateHome[index].strSportThumb}
+                      src={stateHome[stateHome.length - 1 - i].strSportThumb}
                       alt="a wallpaper"
                       className={styles.cardImgTop}
                     />
                   </div>
                   <div className={styles.cardBody}>
-                    <h4 className="card-title">{stateHome[index].strSport}</h4>
+                    <h4 className="card-title">
+                      {stateHome[stateHome.length - 1 - i].strSport}
+                    </h4>
                     <p
                       className={
                         styles.cardText + `${seeMore ? styles.expand : ""}`
                       }
                     >
-                      {stateHome[index].strSportDescription}
+                      {stateHome[stateHome.length - 1 - i].strSportDescription}
                     </p>
 
                     <button onClick={handleMore} className={styles.btnMore}>
@@ -137,12 +155,12 @@ function CardHome() {
                   </div>
                   <div className={styles.containerBtns}>
                     <button
-                      onClick={handleNope}
+                      onClick={(i) => bind(i)} 
                       className={styles.btnNope}
                     ></button>
                     <div className={styles.heartMan}></div>
                     <button
-                      onClick={handleNext}
+                      onClick={handleLike}
                       className={styles.btnLike}
                     ></button>
                   </div>
