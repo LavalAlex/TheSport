@@ -26,7 +26,7 @@ function Home() {
   return (
     <div>  
       {state[0] ? (
-        <div >
+        <div key={0}>
         <CardHome/>
         </div>
       ) : (

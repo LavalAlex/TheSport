@@ -49,7 +49,7 @@ function CardHome() {
   const [flipped, setFlipped] = useState(false);
   const [indexMore, setIndexmore] = useState(0);
   const stateHome = state?.filter((e) => e.favorite != true);
-
+  const [indexProp, setProp] = useState({x:"", y:"", i:"", scale:""})
   const [gone] = useState(() => new Set()); // The set flags all the cards that are flicked out
   const [props, api] = useSprings(stateHome.length, (i) => ({
     ...to(i),
@@ -74,7 +74,10 @@ function CardHome() {
         const rot = mx / 100 + (isGone ? xDir * 10 * vx : 0); // How much the card tilts, flicking it harder makes it rotate faster
         const scale = active ? 1.1 : 1; // Active cards lift up a bit
         xCard = x;
-        return {
+      //   setProp((old)=>({
+      //     ...old, x:x, y:"", scale:scale
+      // })
+      return {
           x,
           scale,
           delay: undefined,
@@ -96,10 +99,13 @@ function CardHome() {
           setMove(move + 1);
           gone.delete(index);
           favAdd(fav);
-          setIndex(index + 1);
+          setIndexmore(index + 1);
+          setSeemore(false);
+          console.log('Entraaa')
         }
-        if (xCard > 0) {
-          setIndex(index + 1);
+        if (xCard < 0) {
+          setIndexmore(index + 1);
+          setSeemore(false);
         }
       }
     }
@@ -107,7 +113,7 @@ function CardHome() {
 
   const handleNope = () => {
     setFlipped((lastState) => !lastState);
-    setIndex(index + 1);
+    setIndexmore(index + 1);
     // bind(index);
   };
 
@@ -120,7 +126,7 @@ function CardHome() {
   };
 
   const handleLike = () => {
-    setIndex(index + 1);
+    setIndexmore(index + 1);
     // setFlipped((state) => !state);
     setSeemore(false);
   };
@@ -132,107 +138,126 @@ function CardHome() {
     onRest: () => setSeemore(false),
   });
 
+  console.log(props);
   return (
-    <div className={styles.container} key={stateHome[index].idSport}>
-      {!seeMore ? (
-        <>
-          {props.map(({ x, y, scale }, i) => (
-            <animated.div className={styles.deck} key={i} style={{ x, y }}>
-              <animated.div
-                {...bind(i)}
-                style={{
-                  transform: interpolate([scale], trans),
-                }}
-              >
-                <div className={styles.card}>
-                  <div>
-                    <div className={styles.overflow}>
-                      <img
-                        src={stateHome[stateHome.length - 1 - i].strSportThumb}
-                        alt="a wallpaper"
-                        className={styles.cardImgTop}
-                      />
-                    </div>
-                    <div className={styles.cardBody}>
-                      <h4 className="card-title">
-                        {stateHome[stateHome.length - 1 - i].strSport}
-                      </h4>
-                      <p
-                        className={
-                          styles.cardText + `${seeMore ? styles.expand : ""}`
-                        }
-                      >
-                        {
-                          stateHome[stateHome.length - 1 - i]
+    <div className={styles.container} key={index}>
+      {!seeMore ? 
+      <>
+      (
+        
+        {props.map(({ x, y, scale }, i) => (
+              <animated.div className={styles.deck} key={i} style={{ x, y }}>
+                <animated.div
+                  {...bind(i)}
+                  style={{
+                    transform: interpolate([scale], trans),
+                  }}
+                >
+                  <div className={styles.card} key={i}>
+                    <div>
+                      <div className={styles.overflow}>
+                        <img
+                          src={
+                            stateHome[stateHome.length - 1 - i].strSportThumb
+                          }
+                          alt="a wallpaper"
+                          className={styles.cardImgTop}
+                          />
+                      </div>
+                      <div className={styles.cardBody}>
+                        <h4 className="card-title">
+                          {stateHome[stateHome.length - 1 - i].strSport}
+                        </h4>
+                        <p
+                          className={
+                            styles.cardText + `${seeMore ? styles.expand : ""}`
+                          }
+                          >
+                          {
+                            stateHome[stateHome.length - 1 - i]
                             .strSportDescription
-                        }
-                      </p>
+                          }
+                        </p>
 
-                      <button onClick={handleMore} className={styles.btnMore}>
-                        {!seeMore ? "See More..." : "See Less..."}
-                      </button>
-                    </div>
-                    <div className={styles.containerBtns}>
-                      <button
-                        onClick={handleNope}
-                        className={styles.btnNope}
-                      ></button>
-                      <div className={styles.heartMan}></div>
-                      <button
-                        onClick={handleLike}
-                        className={styles.btnLike}
-                      ></button>
+                        <button onClick={handleMore} className={styles.btnMore}>
+                          {!seeMore ? "See More..." : "See Less..."}
+                        </button>
+                      </div>
+                      <div className={styles.containerBtns}>
+                        <button
+                          onClick={handleNope}
+                          className={styles.btnNope}
+                          ></button>
+                        <div className={styles.heartMan}></div>
+                        <button
+                          onClick={handleLike}
+                          className={styles.btnLike}
+                          ></button>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </animated.div>
               </animated.div>
-            </animated.div>
-          ))}
-        </>
-      ) : (
- 
-  <div className={styles.containerMore}>
+                )
+                )
+              }
+          ) 
+              </>
+          :
+                <>
+           (
+             <animated.div className={styles.deck}  >
+                <animated.div
+                {...bind(0)}
+                style={{
+                    transform: interpolate([1], trans),
+                  }}
+                >
+                  <div className={styles.card}>
+                    <div>
+                      <div className={styles.overflow}>
+                        <img
+                          src={stateHome[indexMore].strSportThumb}
+                          alt="a wallpaper"
+                          className={styles.cardImgTop}
+                          />
+                      </div>
+                      <div className={styles.cardBody}>
+                        <h4 className="card-title">
+                          {stateHome[indexMore].strSport}
+                        </h4>
+                        <p
+                          className={
+                            styles.cardText + `${seeMore ? styles.expand : ""}`
+                          }
+                        >
+                          {stateHome[indexMore].strSportDescription}
+                        </p>
 
-            <div className={styles.card}>
-              <div>
-                <div className={styles.overflow}>
-                  <img
-                    src={stateHome[index].strSportThumb}
-                    alt="a wallpaper"
-                    className={styles.cardImgTop}
-                  />
-                </div>
-                <div className={styles.cardBody}>
-                  <h4 className="card-title">{stateHome[index].strSport}</h4>
-                  <p
-                    className={
-                      styles.cardText + `${seeMore ? styles.expand : ""}`
-                    }
-                  >
-                    {stateHome[index].strSportDescription}
-                  </p>
-
-                  <button onClick={handleMore} className={styles.btnMore}>
-                    {!seeMore ? "See More..." : "See Less..."}
-                  </button>
-                </div>
-                <div className={styles.containerBtns}>
-                  <button
-                    onClick={(i) => bind(i)}
-                    className={styles.btnNope}
-                  ></button>
-                  <div className={styles.heartMan}></div>
-                  <button
-                    onClick={handleLike}
-                    className={styles.btnLike}
-                  ></button>
-                </div>
-              </div>
-            </div>
-        
-        </div>
-      )}
+                        <button onClick={handleMore} className={styles.btnMore}>
+                          {!seeMore ? "See More..." : "See Less..."}
+                        </button>
+                      </div>
+                      <div className={styles.containerBtns}>
+                        <button
+                          onClick={handleNope}
+                          className={styles.btnNope}
+                          ></button>
+                        <div className={styles.heartMan}></div>
+                        <button
+                          onClick={handleLike}
+                          className={styles.btnLike}
+                          ></button>
+                      </div>
+                    </div>
+                  </div>
+                </animated.div>
+              </animated.div>
+          )
+            </>
+      }
     </div>
+     
   );
 }
 
