@@ -2,8 +2,9 @@
   display: flex;
   justify-content: center;
   padding: 1rem;
-  margin-top: 15rem;
   margin-bottom: 25rem;
+  width: 100%;
+  height: auto;
 }
 .containerImg {
   background-image: url("./Image/woman.png");
@@ -21,7 +22,7 @@
   border: solid black;
   padding: 1rem;
   border-radius: 2rem;
-  margin-top: 10px;
+  margin-top: 25rem;
   background-color: #ffaa00;
   cursor: url('https://uploads.codesandbox.io/uploads/user/b3e56831-8b98-4fee-b941-0e27f39883ab/Ad1_-cursor.png') 39 39,
     auto;
@@ -241,4 +242,10 @@
 
 .btnMoreFav:hover {
   color: white;
+}
+
+.containerMore{
+  width: 100rem;
+  height: 100rem;
+  background: black;
 }
